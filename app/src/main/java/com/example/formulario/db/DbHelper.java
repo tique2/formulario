@@ -12,7 +12,6 @@ public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(@Nullable Context context) {
         super(context, DATAVASE_NAME, null, DATAVASE_VERSION);
     }
-
     @Override
     public void onCreate(SQLiteDatabase Basededatos) {
         Basededatos.execSQL("create table "+DATAVASE_TABLE+"(" +
@@ -20,9 +19,15 @@ public class DbHelper extends SQLiteOpenHelper {
                 "nombre text not null," +
                 "cantidad text not null," +
                 "precio text not null)");
-
     }
-
+    public void insertar(SQLiteDatabase inserta){
+        inserta.execSQL("Insert into "+DATAVASE_TABLE);
+        insertar(inserta);
+    }
+    public void guardar(SQLiteDatabase guarda){
+        guarda.execSQL("UPDATE "+DATAVASE_TABLE);
+        guardar(guarda);
+    }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("drop table "+DATAVASE_TABLE);
